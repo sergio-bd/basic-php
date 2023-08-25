@@ -37,21 +37,31 @@ $config = [
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+                    'levels' => ['error', 'warning', 'info'],
                 ],
             ],
         ],
         'db' => $db,
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'enableStrictParsing' => true,
+            // 'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'country'],
+                'GET,HEAD <controller:[\w\-]+>' =>  '<controller>/index',
+                'POST <controller:[\w\-]+>' => '<controller>/create',
+                'PUT,PATCH <controller:[\w\-]+>/<id:\d+>' => '<controller>/update',
+                'GET,HEAD <controller:[\w\-]+>/<id:\d+>' =>  '<controller>/view',
+                'DELETE <controller:[\w\-]+>/<id:\d+>' =>  '<controller>/delete',
+//                ['class' => 'yii\rest\UrlRule', 'controller' => ['country'], 'pluralize' => false]
             ],
         ],
     ],
     'params' => $params,
+    'modules' => [
+        'api' => [
+            'class' => 'app\modules\api\Module',
+        ],
+    ]
 ];
 
 if (YII_ENV_DEV) {
