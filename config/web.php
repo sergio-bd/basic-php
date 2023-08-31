@@ -44,15 +44,9 @@ $config = [
         'db' => $db,
         'urlManager' => [
             'enablePrettyUrl' => true,
-            // 'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                'GET,HEAD <controller:[\w\-]+>' =>  '<controller>/index',
-                'POST <controller:[\w\-]+>' => '<controller>/create',
-                'PUT,PATCH <controller:[\w\-]+>/<id:\d+>' => '<controller>/update',
-                'GET,HEAD <controller:[\w\-]+>/<id:\d+>' =>  '<controller>/view',
-                'DELETE <controller:[\w\-]+>/<id:\d+>' =>  '<controller>/delete',
-//                ['class' => 'yii\rest\UrlRule', 'controller' => ['country'], 'pluralize' => false]
+                ['class' => 'yii\rest\UrlRule', 'controller' => ['country', 'api/country', 'api/v1/country'], 'pluralize' => false]
             ],
         ],
     ],
