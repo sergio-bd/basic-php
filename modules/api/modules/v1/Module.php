@@ -20,5 +20,7 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
+
+        Yii::configure($this, require __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'main.php');
     }
 }
