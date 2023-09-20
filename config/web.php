@@ -56,17 +56,6 @@ $config = [
 
                     ],
                 ],
-                [
-                    'class' => 'yii\rest\UrlRule', 'controller' => ['api/v1/country'], 'pluralize' => false,
-                    'tokens' => ['{id}' => '<id:\\d+>'],
-                    'patterns' => [
-                        'GET' => 'index',
-                        'GET {id}' => 'view',
-                        'POST' => 'create',
-                        'PUT {id}' => 'update',
-                        'DELETE {id}' => 'delete',
-                    ]
-                ]
             ],
         ],
     ],
@@ -94,5 +83,10 @@ if (YII_ENV_DEV) {
         'allowedIPs' => ['127.0.0.1', '::1']
     ];
 }
+
+$config['bootstrap'][] = 'v1';
+$config['modules']['v1'] = [
+    'class' => 'app\modules\api\modules\v1\Module',
+];
 
 return $config;
