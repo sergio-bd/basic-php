@@ -9,15 +9,6 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-//                [
-//                    'class' => 'yii\web\GroupUrlRule',
-//                    'prefix' => 'api',
-//                    'rules' => [
-//                        // API module
-//                        'OPTIONS <url:.*>' => 'default/index',
-//
-//                    ],
-//                ],
                 [
                     'class' => 'yii\rest\UrlRule', 'controller' => ['api/v1/country'], 'pluralize' => false,
                     'tokens' => ['{id}' => '<id:\\d+>'],

@@ -1,15 +1,21 @@
 <?php
 
+use nsusoft\dadata\handlers\DbHandler;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        'dadata',
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@nsusoft' => '@vendor/nsu-soft'
     ],
     'components' => [
         'request' => [
@@ -63,6 +69,12 @@ $config = [
     'modules' => [
         'api' => [
             'class' => 'app\modules\api\Module',
+        ],
+        'dadata' => [
+            'class' => 'nsusoft\dadata\Module',
+            'token' => 'enter-your-dadata-token',
+            'secret' => 'enter-your-dadata-secret',
+            'cachePriority' => [DbHandler::class],
         ],
     ]
 ];

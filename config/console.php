@@ -1,12 +1,14 @@
 <?php
 
+use nsusoft\dadata\handlers\DbHandler;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic-console',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'dadata'],
     'controllerNamespace' => 'app\commands',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -28,6 +30,15 @@ $config = [
         'db' => $db,
     ],
     'params' => $params,
+    'modules' => [
+        'dadata' => [
+            'class' => 'nsusoft\dadata\Module',
+            'token' => 'enter-your-dadata-token',
+            'secret' => 'enter-your-dadata-secret',
+            'cachePriority' => [DbHandler::class],
+            'tablePrefix' => 'dd_'
+        ],
+    ],
     /*
     'controllerMap' => [
         'fixture' => [ // Fixture generation command line.
